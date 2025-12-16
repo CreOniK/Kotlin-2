@@ -1,0 +1,329 @@
+Index: src/main/kotlin/Time.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/kotlin/Time.kt b/src/main/kotlin/Time.kt
+new file mode 100644
+--- /dev/null	(date 1765888941417)
++++ b/src/main/kotlin/Time.kt	(date 1765888941417)
+@@ -0,0 +1,62 @@
++fun main() {
++    var Zap = ""
++    var con = false
++    var i = 0
++    println(" Введите Запрос")
++    Zap =readln()
++    if (Zap == "time")
++    {
++        var sec = 0
++        while (!con)
++        {
++            println(" Введите Количество Секунд!")
++            sec =readln().toInt()
++            println(agoToText(sec)+"\uD83D\uDD53")
++            println()
++            i++
++            if(i==4){
++                println("Хотите Выйти")
++                con = readln().toBoolean()
++                i=0
++            }
++        }
++    }
++}
++
++fun agoToText(seconds: Int): String {
++    return when {
++        seconds < 0 -> "некорректное время"
++        seconds < 60 -> "был(а) только что"
++        seconds < 3600 -> "Был(а) ${Minuts(seconds / 60)} назад"
++        seconds < 86400 -> "Был(а) ${FHours(seconds / 3600)} назад"
++        seconds < 172800 -> "был(а) вчера"
++        seconds < 259200 -> "был(а) позавчера"
++        else -> "был(а) давно"
++    }
++}
++
++fun Minuts(min: Int): String {
++    val last1D = (min % 10).toInt()
++    val last2D = (min % 100).toInt()
++
++    return if (last1D in 11..14) {
++        "$min минут"
++    } else when (last2D) {
++        1 -> "$min минуту"
++        2, 3, 4 -> "$min минуты"
++        else -> "$min минут"
++    }
++}
++
++fun FHours(hours: Int): String {
++    val last1D = (hours % 10).toInt()
++    val last2D = (hours % 100).toInt()
++
++    return if (last1D in 11..14) {
++        "$hours часов"
++    } else when (last2D) {
++        1 -> "$hours час"
++        2, 3, 4 -> "$hours часа"
++        else -> "$hours часов"
++    }
++}
+Index: src/main/kotlin/Komit.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/kotlin/Komit.kt b/src/main/kotlin/Komit.kt
+new file mode 100644
+--- /dev/null	(date 1765889779674)
++++ b/src/main/kotlin/Komit.kt	(date 1765889779674)
+@@ -0,0 +1,48 @@
++fun main() {
++    var Thk = true
++    var Ehe =""
++    var Cards ="Mastercard"
++    var amount= 0.0
++    do {
++        println(" Введите свою карту!")
++        Cards = readln().toString()
++        println(" Введите cумму перевода!")
++        try {
++            amount = readln().toDouble()
++        }catch (e: Exception)
++        {
++            println("Ошибка ввода числа")
++        }
++        println(amount * CalculetedSum(Cards, amount))
++        println("Еще 1 перевод?")
++        Ehe = readln()
++        if (Ehe == "да")
++        {
++            Thk = true
++        }else
++        {
++            Thk = false
++        }
++
++    }while ( Thk)
++}
++fun CalculetedSum(Cards:String,amount: Double): Double
++{
++    if (amount <= 0 )
++    {
++        println("⚠️ Ошибка! Сумма перевода должна быть больше 0 рублей.")
++        return 0.0
++    }
++    if (amount >300 && amount <75000 && (Cards == "Mastercard" || Cards =="Maestro"))
++    {
++        return 0.0
++    }else
++    {
++        return 0.006
++    }
++    if (amount >35  && (Cards == "Visa"|| Cards == "Мир"))
++    {
++        return 0.0075
++    }
++
++}
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+--- /dev/null	(date 1765888795617)
++++ b/.gitignore	(date 1765888795617)
+@@ -0,0 +1,32 @@
++### IntelliJ IDEA ###
++out/
++!**/src/main/**/out/
++!**/src/test/**/out/
++
++### Kotlin ###
++.kotlin
++
++### Eclipse ###
++.apt_generated
++.classpath
++.factorypath
++.project
++.settings
++.springBeans
++.sts4-cache
++bin/
++!**/src/main/**/bin/
++!**/src/test/**/bin/
++
++### NetBeans ###
++/nbproject/private/
++/nbbuild/
++/dist/
++/nbdist/
++/.nb-gradle/
++
++### VS Code ###
++.vscode/
++
++### Mac OS ###
++.DS_Store
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1765888795323)
++++ b/.idea/vcs.xml	(date 1765888795323)
+@@ -0,0 +1,4 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings" defaultProject="true" />
++</project>
+\ No newline at end of file
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1765888801023)
++++ b/.idea/.gitignore	(date 1765888801023)
+@@ -0,0 +1,3 @@
++# Default ignored files
++/shelf/
++/workspace.xml
+Index: .idea/inspectionProfiles/Project_Default.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/inspectionProfiles/Project_Default.xml b/.idea/inspectionProfiles/Project_Default.xml
+new file mode 100644
+--- /dev/null	(date 1765888823781)
++++ b/.idea/inspectionProfiles/Project_Default.xml	(date 1765888823781)
+@@ -0,0 +1,6 @@
++<component name="InspectionProjectProfileManager">
++  <profile version="1.0">
++    <option name="myName" value="Project Default" />
++    <inspection_tool class="ReplaceUntilWithRangeUntil" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
++  </profile>
++</component>
+\ No newline at end of file
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+--- /dev/null	(date 1765888823801)
++++ b/.idea/modules.xml	(date 1765888823801)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/untitled.iml" filepath="$PROJECT_DIR$/untitled.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: Kotlin2.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Kotlin2.iml b/Kotlin2.iml
+new file mode 100644
+--- /dev/null	(date 1765888823796)
++++ b/Kotlin2.iml	(date 1765888823796)
+@@ -0,0 +1,15 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src/main/kotlin" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/src/test/kotlin" isTestSource="true" />
++      <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/kotlinc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/kotlinc.xml b/.idea/kotlinc.xml
+new file mode 100644
+--- /dev/null	(date 1765888823817)
++++ b/.idea/kotlinc.xml	(date 1765888823817)
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Kotlin2JvmCompilerArguments">
++    <option name="jvmTarget" value="1.8" />
++  </component>
++  <component name="KotlinCommonCompilerArguments">
++    <option name="apiVersion" value="2.1" />
++    <option name="languageVersion" value="2.1" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1765888823813)
++++ b/.idea/misc.xml	(date 1765888823813)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_20" default="true" project-jdk-name="20" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/libraries/KotlinJavaRuntime.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/KotlinJavaRuntime.xml b/.idea/libraries/KotlinJavaRuntime.xml
+new file mode 100644
+--- /dev/null	(date 1765888823809)
++++ b/.idea/libraries/KotlinJavaRuntime.xml	(date 1765888823809)
+@@ -0,0 +1,17 @@
++<component name="libraryTable">
++  <library name="KotlinJavaRuntime" type="repository">
++    <properties maven-id="org.jetbrains.kotlin:kotlin-stdlib:2.1.0" />
++    <CLASSES>
++      <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib/2.1.0/kotlin-stdlib-2.1.0.jar!/" />
++      <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/annotations/13.0/annotations-13.0.jar!/" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib/2.1.0/kotlin-stdlib-2.1.0-javadoc.jar!/" />
++      <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/annotations/13.0/annotations-13.0-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib/2.1.0/kotlin-stdlib-2.1.0-sources.jar!/" />
++      <root url="jar://$MAVEN_REPOSITORY$/org/jetbrains/annotations/13.0/annotations-13.0-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
