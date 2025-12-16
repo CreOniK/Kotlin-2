@@ -60,5 +60,5 @@ fun agoToText(seconds: Int): String {
             2, 3, 4 -> "$hours часа"
             else -> "$hours часов"
     }
-}
+ }
 
